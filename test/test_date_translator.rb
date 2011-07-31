@@ -19,7 +19,7 @@ class DateTranslatorTest < MiniTest::Unit::TestCase
   end
 
   def test_translate_returns_now_if_date_difference_is_within_tolerance
-    @date_translator.now_tolerance = 15
+    @date_translator.tolerance = 15
     assert_equal "now", translate("2011-10-23T00:00:15")
     assert_equal "now", translate("2011-10-23T00:00:10")
   end
@@ -50,7 +50,7 @@ class DateTranslatorTest < MiniTest::Unit::TestCase
   end
 
   def test_translate_returns_seconds
-    @date_translator.now_tolerance = 0
+    @date_translator.tolerance = 0
     assert_equal "1 second", translate("2011-10-23T00:00:01")
     assert_equal "2 seconds", translate("2011-10-23T00:00:02")
   end
