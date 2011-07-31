@@ -11,7 +11,7 @@ Usage:
 ------
 
 ```ruby
-date_translator= HumanDate::DateTranslator.new
+date_translator = HumanDate::DateTranslator.new
 from = DateTime.now
 sleep 10
 to = DateTime.now
