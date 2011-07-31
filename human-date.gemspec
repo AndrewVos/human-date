@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Human::Date::VERSION
   s.authors     = ["Andrew Vos"]
   s.email       = ["andrew.vos@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/AndrewVos/human-date"
   s.summary     = %q{Human readable date differences}
   s.description = %q{Human readable date differences}
 
