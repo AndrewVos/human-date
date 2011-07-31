@@ -24,14 +24,18 @@ class DateTranslatorTest < MiniTest::Unit::TestCase
     assert_equal "now", translate("2011-10-23T00:00:10")
   end
 
+  def test_translate_returns_all_possible_times
+    assert_equal "1 year, 2 months, 4 days, 2 hours, 5 minutes and 10 seconds", translate("2012-12-25T02:05:10")
+  end
+
   def test_translate_returns_years
-    assert_equal "1 year", translate("2012-10-23T00:00:00")
-    assert_equal "2 years", translate("2013-10-23T00:00:00")
+    assert_equal "1 year", translate("2012-10-22T00:00:00")
+    assert_equal "2 years", translate("2013-10-22T00:00:00")
   end
 
   def test_translate_returns_months
-    assert_equal "1 month", translate("2011-11-23T00:00:00")
-    assert_equal "2 months", translate("2011-12-23T00:00:00")
+    assert_equal "1 month", translate("2011-11-22T00:00:00")
+    assert_equal "2 months", translate("2011-12-22T00:00:00")
   end
 
   def test_translate_returns_days

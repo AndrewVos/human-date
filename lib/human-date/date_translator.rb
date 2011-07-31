@@ -19,16 +19,38 @@ module HumanDate
 
     def translate(from, to)
       total_difference_in_seconds = ((to-from) * 60 * 60 * 24).to_i
-      return 'now' if total_difference_in_seconds.abs <= tolerance
+      absolute_total_difference_in_seconds = total_difference_in_seconds.abs
+      return 'now' if absolute_total_difference_in_seconds <= tolerance
 
+      words = []
       TIME.keys.each do |key|
-        if total_difference_in_seconds.abs >= TIME[key]
-          result = "#{total_difference_in_seconds.abs / TIME[key]} #{key}"
-          result += 's' if total_difference_in_seconds.abs >= (TIME[key] * 2)
-          result += ' ago' if total_difference_in_seconds < 0
-          return result
+        if absolute_total_difference_in_seconds >= TIME[key]
+          count = 0
+          while absolute_total_difference_in_seconds >= TIME[key]
+            absolute_total_difference_in_seconds -= TIME[key]
+            count += 1
+          end
+          word = "#{count} #{key}"
+          word += 's' if count >= 2
+          words << word
         end
       end
+
+      sentence = join_words(words)
+      sentence += ' ago' if total_difference_in_seconds < 0
+      sentence
+    end
+
+    private
+
+    def join_words(words)
+      if words.size > 2
+        last_two_words = "#{words[-2]} and #{words[-1]}"
+        words.pop
+        words.pop
+        words.push(last_two_words)
+      end
+      words.join(", ")
     end
 
   end
