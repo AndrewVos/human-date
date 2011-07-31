@@ -14,7 +14,7 @@ module HumanDate
     }
 
     def initialize
-      @now_tolerance = 10
+      @now_tolerance = 1
     end
 
     def translate(from, to)
