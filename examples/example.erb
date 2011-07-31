@@ -1,0 +1,15 @@
+require 'human-date'
+
+translator = HumanDate::DateTranslator.new    <% translator = HumanDate::DateTranslator.new %>
+date1 = DateTime.parse "2011-10-23T00:00:00"  <% date1 = DateTime.parse "2011-10-23T00:00:00" %>
+date2 = DateTime.parse "2012-12-25T02:05:10"  <% date2 = DateTime.parse "2012-12-25T02:05:10" %>
+
+translator.translate(date1, date2)
+#=> <%= translator.translate(date1, date2) %>
+
+translator.translate(date2, date1)
+#=> <%= translator.translate(date2, date1) %>
+
+translator.parts = [:year, :month, :day] <% translator.parts = [:year, :month, :day] %>
+translator.translate(date1, date2)
+#=> <%= translator.translate(date1, date2) %>
