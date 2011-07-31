@@ -35,6 +35,7 @@ module HumanDate
         result += 's' if total_difference_in_seconds >= (ONE_MINUTE * 2)
       else
         result = "#{total_difference_in_seconds} second"
+        result += 's' if total_difference_in_seconds >= 2
       end
       return result
     end
