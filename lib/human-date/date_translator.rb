@@ -2,7 +2,7 @@ require 'date'
 
 module HumanDate
   class DateTranslator
-    attr_accessor :tolerance
+    attr_accessor :tolerance, :parts
 
     TIME = {
       :year     => 365 * 24 * 60 * 60,
@@ -15,15 +15,16 @@ module HumanDate
 
     def initialize
       @tolerance = 1
+      @parts = TIME.keys
     end
 
-    def translate(from, to)
+    def translate from, to
       total_difference_in_seconds = ((to-from) * 60 * 60 * 24).to_i
       absolute_total_difference_in_seconds = total_difference_in_seconds.abs
       return 'now' if absolute_total_difference_in_seconds <= tolerance
 
       words = []
-      TIME.keys.each do |key|
+      parts.each do |key|
         if absolute_total_difference_in_seconds >= TIME[key]
           count = 0
           while absolute_total_difference_in_seconds >= TIME[key]
